@@ -15,7 +15,7 @@ const FlashCard: React.FC<FlashCardProps> = ({
 }) => {
   return (
     <div className="flex flex-col mb-3 rounded-lg border border-gray-500 bg-[#1f1f1f] font-semibold text-white shadow-md h-80">
-      <div className="flex items-center justify-center text-2xl h-full">
+      <div className="flex items-center justify-center text-2xl h-full p-8">
         {isFlipped ? answer : question}
       </div>
 

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 
+import { generateFlashcards } from "./services/flashcardGenerator.ts";
+
 import FlashCard from "./components/FlashCard";
 import HistoryCard from "./components/HistoryCard";
 
@@ -12,16 +14,29 @@ interface ICard {
 function App() {
   const [topic, setTopic] = useState<string>("");
   const [numCards, setNumCards] = useState<number>(10);
-  const [cards] = useState<ICard[]>([
-    { question: "What is the capital of France?", answer: "Paris" },
-    { question: "What is the capital of Nepal?", answer: "Kathmandu" },
-  ]);
+  const [cards, setCards] = useState<ICard[]>([]);
   const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
+  const [isCrafting, setIsCrafting] = useState<boolean>(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Submitted");
+
+    setTopic("");
+    setNumCards(10);
+
+    setCurrentCardIndex(0);
+    setIsFlipped(false);
+
+    try {
+      setIsCrafting(true);
+      const flashcards = await generateFlashcards(topic, numCards);
+
+      setIsCrafting(false);
+      setCards(flashcards);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleNumCardsInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -38,49 +53,57 @@ function App() {
   };
 
   return (
-    <div className="text-center flex flex-col justify-center min-h-screen bg-[#1a202c] py-2">
+    <div
+      className={`text-center flex flex-col ${
+        cards.length && "justify-center"
+      }  min-h-screen bg-[#1a202c] py-2`}
+    >
       <div className="text-3xl font-bold p-4">
         <span className="text-[#A0FE47]">Quizard</span>
         <span className="text-[#FFD700]">Craft</span>
       </div>
       <div className="grid grid-cols-3 gap-4 mx-64">
         <div className="col-span-2">
-          <FlashCard
-            question={cards[currentCardIndex].question}
-            answer={cards[currentCardIndex].answer}
-            isFlipped={isFlipped}
-            setIsFlipped={setIsFlipped}
-          />
+          {cards.length !== 0 && (
+            <>
+              <FlashCard
+                question={cards[currentCardIndex].question}
+                answer={cards[currentCardIndex].answer}
+                isFlipped={isFlipped}
+                setIsFlipped={setIsFlipped}
+              />
 
-          <div className="flex items-center justify-center text-white gap-4 my-2">
-            <button
-              className={`text-2xl ${
-                currentCardIndex === 0 ? "text-gray-400" : ""
-              }`}
-              disabled={currentCardIndex === 0}
-              onClick={() => {
-                setCurrentCardIndex(currentCardIndex - 1);
-                setIsFlipped(false);
-              }}
-            >
-              <FaCircleArrowLeft />
-            </button>
-            <div className="text-xl">
-              {currentCardIndex + 1} / {cards.length}
-            </div>
-            <button
-              className={`text-2xl ${
-                currentCardIndex === cards.length - 1 ? "text-gray-400" : ""
-              }`}
-              disabled={currentCardIndex === cards.length - 1}
-              onClick={() => {
-                setCurrentCardIndex(currentCardIndex + 1);
-                setIsFlipped(false);
-              }}
-            >
-              <FaCircleArrowRight />
-            </button>
-          </div>
+              <div className="flex items-center justify-center text-white gap-4 my-2">
+                <button
+                  className={`text-2xl ${
+                    currentCardIndex === 0 ? "text-gray-400" : ""
+                  }`}
+                  disabled={currentCardIndex === 0}
+                  onClick={() => {
+                    setCurrentCardIndex(currentCardIndex - 1);
+                    setIsFlipped(false);
+                  }}
+                >
+                  <FaCircleArrowLeft />
+                </button>
+                <div className="text-xl">
+                  {currentCardIndex + 1} / {cards.length}
+                </div>
+                <button
+                  className={`text-2xl ${
+                    currentCardIndex === cards.length - 1 ? "text-gray-400" : ""
+                  }`}
+                  disabled={currentCardIndex === cards.length - 1}
+                  onClick={() => {
+                    setCurrentCardIndex(currentCardIndex + 1);
+                    setIsFlipped(false);
+                  }}
+                >
+                  <FaCircleArrowRight />
+                </button>
+              </div>
+            </>
+          )}
 
           <form className="grid grid-cols-2 gap-2 px-8" onSubmit={handleSubmit}>
             <div className="flex gap-8">
@@ -122,7 +145,7 @@ function App() {
               type="submit"
               className="grid col-span-2 gap-2 bg-green-500 hover:bg-green-700 font-bold py-2 px-4 rounded text-white"
             >
-              Craft
+              {isCrafting ? "Crafting..." : "Craft"}
             </button>
           </form>
         </div>
