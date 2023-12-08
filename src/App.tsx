@@ -52,12 +52,12 @@ function App() {
       } else {
         localStorage.setItem(
           "flashcards",
-          JSON.stringify([{ topic, cards: flashcards }])
+          JSON.stringify([{ topic, cards: flashcards }]),
         );
       }
 
       setCardDecksFromLocalStorage(
-        JSON.parse(localStorage.getItem("flashcards")!)
+        JSON.parse(localStorage.getItem("flashcards")!),
       );
     } catch (err) {
       console.log(err);
@@ -155,6 +155,7 @@ function App() {
                 <input
                   type="number"
                   defaultValue={numCards}
+                  value={numCards}
                   min={1}
                   max={50}
                   onChange={handleNumCardsInput}
@@ -185,6 +186,9 @@ function App() {
                   key={index}
                   topic={cardDeck.topic}
                   numCards={cardDeck.cards.length}
+                  cards={cardDeck.cards}
+                  setCards={setCards}
+                  reset={reset}
                 />
               ))}
             </div>
