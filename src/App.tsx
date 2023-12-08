@@ -87,7 +87,7 @@ function App() {
         <span className="text-[#A0FE47]">Quizard</span>
         <span className="text-[#FFD700]">Craft</span>
       </div>
-      <div className="grid grid-cols-3 gap-4 mx-64">
+      <div className={`grid ${cards.length && "grid-cols-3"} gap-4 mx-64`}>
         <div className="col-span-2">
           {cards.length !== 0 && (
             <>
@@ -130,9 +130,14 @@ function App() {
             </>
           )}
 
-          <form className="grid grid-cols-2 gap-2 px-8" onSubmit={handleSubmit}>
-            <div className="flex gap-8">
-              <div>
+          <form
+            className={`grid justify-center ${
+              cardDecksFromLocalStorage ? "gap-2 px-8" : "mx-auto items-center"
+            }`}
+            onSubmit={handleSubmit}
+          >
+            <div className="flex flex-row justify-center gap-8">
+              <div className="flex flex-col">
                 <label htmlFor="topic" className="text-white font-semibold">
                   Topic
                 </label>
@@ -148,7 +153,7 @@ function App() {
                 />
               </div>
 
-              <div>
+              <div className="flex flex-col">
                 <label htmlFor="numCards" className="text-white font-semibold">
                   #Cards
                 </label>
@@ -169,7 +174,7 @@ function App() {
 
             <button
               type="submit"
-              className="grid col-span-2 gap-2 bg-green-500 hover:bg-green-700 font-bold py-2 px-4 rounded text-white"
+              className="bg-green-500 hover:bg-green-700 font-bold py-2 px-4 rounded text-white"
             >
               {isCrafting ? "Crafting..." : "Craft"}
             </button>
