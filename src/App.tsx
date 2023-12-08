@@ -25,14 +25,17 @@ function App() {
     }
   }, []);
 
+  const reset = () => {
+    setTopic("");
+    setNumCards(10);
+    setCurrentCardIndex(0);
+    setIsFlipped(false);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setTopic("");
-    setNumCards(10);
-
-    setCurrentCardIndex(0);
-    setIsFlipped(false);
+    reset();
 
     try {
       setIsCrafting(true);
