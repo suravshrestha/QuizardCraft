@@ -86,7 +86,11 @@ function App() {
         <span className="text-[#A0FE47]">Quizard</span>
         <span className="text-[#FFD700]">Craft</span>
       </div>
-      <div className={`grid ${cards.length && "grid-cols-3"} gap-4 mx-64`}>
+      <div
+        className={`grid ${
+          cardDecksFromLocalStorage && "grid-cols-3"
+        } gap-4 mx-64`}
+      >
         <div className="col-span-2">
           {cards.length !== 0 && (
             <>
