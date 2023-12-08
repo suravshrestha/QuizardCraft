@@ -185,10 +185,10 @@ function App() {
         </div>
 
         {cardDecksFromLocalStorage.length !== 0 && (
-          <div className="border border-gray-500 p-4 rounded-lg bg-[#1f1f1f] text-white">
+          <div className="border border-gray-500 p-4 pr-0 rounded-lg bg-[#1f1f1f] text-white">
             <div className="text-xl font-bold mb-4">History</div>
 
-            <div className="flex flex-col gap-4 mt-2">
+            <div className="flex flex-col gap-y-4 pr-4 mt-2 overflow-auto h-96">
               {cardDecksFromLocalStorage.map((cardDeck, index) => (
                 <HistoryCard
                   key={index}
