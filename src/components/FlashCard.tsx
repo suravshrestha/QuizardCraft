@@ -14,8 +14,14 @@ const FlashCard: React.FC<FlashCardProps> = ({
   setIsFlipped,
 }) => {
   return (
-    <div className="flex flex-col mb-3 rounded-lg border border-gray-500 bg-[#1f1f1f] font-semibold text-white shadow-md h-80">
-      <div className="flex items-center justify-center text-2xl h-full p-8">
+    <div className="flex flex-col mb-3 rounded-lg border border-gray-500 bg-[#1f1f1f] shadow-md h-80">
+      <div
+        className={`flex justify-center ${!isFlipped && "items-center"} ${
+          isFlipped ? "text-xl" : "text-2xl font-semibold"
+        } ${
+          isFlipped && answer.length < 450 && "items-center"
+        } h-full px-8 my-4 overflow-auto text-white`}
+      >
         {isFlipped ? answer : question}
       </div>
 
