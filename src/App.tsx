@@ -27,7 +27,6 @@ function App() {
 
   const reset = () => {
     setTopic("");
-    setNumCards(10);
     setCurrentCardIndex(0);
     setIsFlipped(false);
   };
