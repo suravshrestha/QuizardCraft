@@ -173,9 +173,9 @@ function App() {
 
             <button
               type="submit"
-              className="bg-green-500 hover:bg-green-700 font-bold py-2 px-4 rounded text-white"
+              className="bg-green-600 hover:bg-green-700 font-bold py-2 px-4 rounded text-white tracking-wide"
             >
-              {isCrafting ? "Crafting..." : "Craft"}
+              {isCrafting ? "CRAFTING..." : "CRAFT"}
             </button>
           </form>
         </div>
