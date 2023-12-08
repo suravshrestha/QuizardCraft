@@ -13,16 +13,30 @@ const FlashCard: React.FC<FlashCardProps> = ({
   isFlipped,
   setIsFlipped,
 }) => {
+  const formatAnswer = (text: string) => {
+    return text
+      .replace(/Example:/g, "\nExample:")
+      .split(/\n/)
+      .map((paragraph, index) => (
+        <span
+          key={index}
+          className={paragraph.startsWith("Example:") ? "mt-0" : "mt-1"}
+        >
+          {paragraph}
+        </span>
+      ));
+  };
+
   return (
     <div className="flex flex-col mb-3 rounded-lg border border-gray-500 bg-[#1f1f1f] shadow-md h-80">
       <div
-        className={`flex justify-center ${!isFlipped && "items-center"} ${
-          isFlipped ? "text-xl" : "text-2xl font-semibold"
-        } ${
-          isFlipped && answer.length < 450 && "items-center"
+        className={`inline-grid ${
+          !isFlipped ? "text-2xl font-semibold justify-center items-center" : ""
+        } ${isFlipped && answer.length < 500 ? "items-center text-xl" : ""} ${
+          isFlipped && answer.length >= 500 ? "text-lg text-left" : ""
         } h-full px-8 my-4 overflow-auto text-white`}
       >
-        {isFlipped ? answer : question}
+        {isFlipped ? formatAnswer(answer) : question}
       </div>
 
       <button
