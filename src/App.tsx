@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 
 import { generateFlashcards } from "./services/flashcardGenerator.ts";
+import { ICard, ICardDeck } from "./common/types";
 
 import FlashCard from "./components/FlashCard";
 import HistoryCard from "./components/HistoryCard";
-
-interface ICard {
-  question: string;
-  answer: string;
-}
 
 function App() {
   const [topic, setTopic] = useState<string>("");
