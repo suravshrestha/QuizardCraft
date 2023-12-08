@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 
 import { generateFlashcards } from "./services/flashcardGenerator.ts";
@@ -14,6 +14,16 @@ function App() {
   const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [isCrafting, setIsCrafting] = useState<boolean>(false);
+  const [cardDecksFromLocalStorage, setCardDecksFromLocalStorage] = useState<
+    ICardDeck[]
+  >([]);
+
+  useEffect(() => {
+    const flashcards = localStorage.getItem("flashcards");
+    if (flashcards && flashcards.length) {
+      setCardDecksFromLocalStorage(JSON.parse(flashcards));
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -146,14 +156,21 @@ function App() {
           </form>
         </div>
 
-        <div className="border border-gray-500 p-4 rounded-lg bg-[#1f1f1f] text-white">
-          <div className="text-xl font-bold mb-4">History</div>
+        {cardDecksFromLocalStorage.length !== 0 && (
+          <div className="border border-gray-500 p-4 rounded-lg bg-[#1f1f1f] text-white">
+            <div className="text-xl font-bold mb-4">History</div>
 
-          <div className="flex flex-col gap-4 mt-2">
-            <HistoryCard topic="JavaScript" numCards={20} />
-            <HistoryCard topic="TypeScript" numCards={20} />
+            <div className="flex flex-col gap-4 mt-2">
+              {cardDecksFromLocalStorage.map((cardDeck, index) => (
+                <HistoryCard
+                  key={index}
+                  topic={cardDeck.topic}
+                  numCards={cardDeck.cards.length}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
