@@ -43,6 +43,22 @@ function App() {
 
       setIsCrafting(false);
       setCards(flashcards);
+
+      const cardDecks = localStorage.getItem("flashcards");
+      if (cardDecks && cardDecks.length) {
+        const parsedCardDecks: ICardDeck[] = JSON.parse(cardDecks);
+        parsedCardDecks.push({ topic, cards: flashcards });
+        localStorage.setItem("flashcards", JSON.stringify(parsedCardDecks));
+      } else {
+        localStorage.setItem(
+          "flashcards",
+          JSON.stringify([{ topic, cards: flashcards }])
+        );
+      }
+
+      setCardDecksFromLocalStorage(
+        JSON.parse(localStorage.getItem("flashcards")!)
+      );
     } catch (err) {
       console.log(err);
     }
