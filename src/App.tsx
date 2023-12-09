@@ -188,7 +188,7 @@ function App() {
               className="bg-green-600 hover:bg-green-700 font-bold py-2 px-4 rounded text-white tracking-wide"
             >
               {isCrafting ? (
-                <span className="flex flow-col justify-center gap-2">
+                <span className="flex flow-col items-center justify-center gap-2">
                   <Spinner /> CRAFTING...
                 </span>
               ) : (
