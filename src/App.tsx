@@ -6,6 +6,7 @@ import { ICard, ICardDeck } from "./common/types";
 
 import FlashCard from "./components/FlashCard";
 import HistoryCard from "./components/HistoryCard";
+import Spinner from "./components/Spinner.tsx";
 
 function App() {
   const [topic, setTopic] = useState<string>("");
@@ -51,12 +52,12 @@ function App() {
       } else {
         localStorage.setItem(
           "flashcards",
-          JSON.stringify([{ topic, cards: flashcards }]),
+          JSON.stringify([{ topic, cards: flashcards }])
         );
       }
 
       setCardDecksFromLocalStorage(
-        JSON.parse(localStorage.getItem("flashcards")!),
+        JSON.parse(localStorage.getItem("flashcards")!)
       );
     } catch (err) {
       console.log(err);
@@ -181,7 +182,13 @@ function App() {
               disabled={isCrafting}
               className="bg-green-600 hover:bg-green-700 font-bold py-2 px-4 rounded text-white tracking-wide"
             >
-              {isCrafting ? "CRAFTING..." : "CRAFT"}
+              {isCrafting ? (
+                <span className="flex flow-col justify-center">
+                  <Spinner /> CRAFTING...
+                </span>
+              ) : (
+                "CRAFT"
+              )}
             </button>
           </form>
         </div>
