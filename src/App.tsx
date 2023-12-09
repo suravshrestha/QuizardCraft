@@ -106,7 +106,7 @@ function App() {
                   className={`text-2xl ${
                     currentCardIndex === 0 ? "text-gray-400" : ""
                   }`}
-                  disabled={currentCardIndex === 0}
+                  disabled={currentCardIndex === 0 || isCrafting}
                   onClick={() => {
                     setCurrentCardIndex(currentCardIndex - 1);
                     setIsFlipped(false);
@@ -121,7 +121,7 @@ function App() {
                   className={`text-2xl ${
                     currentCardIndex === cards.length - 1 ? "text-gray-400" : ""
                   }`}
-                  disabled={currentCardIndex === cards.length - 1}
+                  disabled={currentCardIndex === cards.length - 1 || isCrafting}
                   onClick={() => {
                     setCurrentCardIndex(currentCardIndex + 1);
                     setIsFlipped(false);
@@ -177,6 +177,7 @@ function App() {
 
             <button
               type="submit"
+              disabled={isCrafting}
               className="bg-green-600 hover:bg-green-700 font-bold py-2 px-4 rounded text-white tracking-wide"
             >
               {isCrafting ? "CRAFTING..." : "CRAFT"}
