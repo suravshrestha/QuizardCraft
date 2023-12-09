@@ -52,12 +52,12 @@ function App() {
       } else {
         localStorage.setItem(
           "flashcards",
-          JSON.stringify([{ topic, cards: flashcards }])
+          JSON.stringify([{ topic, cards: flashcards }]),
         );
       }
 
       setCardDecksFromLocalStorage(
-        JSON.parse(localStorage.getItem("flashcards")!)
+        JSON.parse(localStorage.getItem("flashcards")!),
       );
     } catch (err) {
       console.log(err);
@@ -81,7 +81,7 @@ function App() {
     <div
       className={`text-center flex flex-col ${
         cards.length && "justify-center"
-      }  min-h-screen bg-[#1a202c] py-2`}
+      }  min-h-screen bg-[#1a202c]`}
     >
       <div className="text-3xl font-bold p-4">
         <span className="text-[#A0FE47]">Quizard</span>
@@ -183,7 +183,7 @@ function App() {
               className="bg-green-600 hover:bg-green-700 font-bold py-2 px-4 rounded text-white tracking-wide"
             >
               {isCrafting ? (
-                <span className="flex flow-col justify-center">
+                <span className="flex flow-col justify-center gap-2">
                   <Spinner /> CRAFTING...
                 </span>
               ) : (

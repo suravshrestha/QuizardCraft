@@ -1,4 +1,5 @@
 import React from "react";
+import Spinner from "./Spinner";
 
 interface FlashCardProps {
   question: string;
@@ -38,11 +39,13 @@ const FlashCard: React.FC<FlashCardProps> = ({
           isFlipped && answer.length >= 500 ? "text-lg text-left" : ""
         } h-full px-8 my-4 overflow-auto text-white`}
       >
-        {isCrafting
-          ? "CRAFTING..."
-          : isFlipped
-            ? formatAnswer(answer)
-            : question}
+        {isCrafting ? (
+          <Spinner size={10} />
+        ) : isFlipped ? (
+          formatAnswer(answer)
+        ) : (
+          question
+        )}
       </div>
 
       {!isCrafting && (
