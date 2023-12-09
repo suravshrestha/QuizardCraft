@@ -103,35 +103,41 @@ function App() {
                 isCrafting={isCrafting}
               />
 
-              <div className="flex items-center justify-center text-white gap-4 my-2">
-                <button
-                  className={`text-2xl ${
-                    currentCardIndex === 0 ? "text-gray-400" : ""
-                  }`}
-                  disabled={currentCardIndex === 0 || isCrafting}
-                  onClick={() => {
-                    setCurrentCardIndex(currentCardIndex - 1);
-                    setIsFlipped(false);
-                  }}
-                >
-                  <FaCircleArrowLeft />
-                </button>
-                <div className="text-xl">
-                  {currentCardIndex + 1} / {cards.length}
+              {!isCrafting && (
+                <div className="flex items-center justify-center text-white gap-4 mb-2">
+                  <button
+                    className={`text-2xl ${
+                      currentCardIndex === 0 ? "text-gray-400" : ""
+                    }`}
+                    disabled={currentCardIndex === 0 || isCrafting}
+                    onClick={() => {
+                      setCurrentCardIndex(currentCardIndex - 1);
+                      setIsFlipped(false);
+                    }}
+                  >
+                    <FaCircleArrowLeft />
+                  </button>
+                  <div className="text-xl">
+                    {currentCardIndex + 1} / {cards.length}
+                  </div>
+                  <button
+                    className={`text-2xl ${
+                      currentCardIndex === cards.length - 1
+                        ? "text-gray-400"
+                        : ""
+                    }`}
+                    disabled={
+                      currentCardIndex === cards.length - 1 || isCrafting
+                    }
+                    onClick={() => {
+                      setCurrentCardIndex(currentCardIndex + 1);
+                      setIsFlipped(false);
+                    }}
+                  >
+                    <FaCircleArrowRight />
+                  </button>
                 </div>
-                <button
-                  className={`text-2xl ${
-                    currentCardIndex === cards.length - 1 ? "text-gray-400" : ""
-                  }`}
-                  disabled={currentCardIndex === cards.length - 1 || isCrafting}
-                  onClick={() => {
-                    setCurrentCardIndex(currentCardIndex + 1);
-                    setIsFlipped(false);
-                  }}
-                >
-                  <FaCircleArrowRight />
-                </button>
-              </div>
+              )}
             </>
           )}
 
@@ -164,7 +170,6 @@ function App() {
                 </label>
                 <input
                   type="number"
-                  defaultValue={numCards}
                   value={numCards}
                   min={1}
                   max={50}

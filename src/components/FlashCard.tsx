@@ -31,7 +31,11 @@ const FlashCard: React.FC<FlashCardProps> = ({
   };
 
   return (
-    <div className="flex flex-col mb-3 rounded-lg border border-gray-500 bg-[#1f1f1f] shadow-md h-80">
+    <div
+      className={`flex flex-col mb-${
+        isCrafting ? 6 : 3
+      } rounded-lg border border-gray-500 bg-[#1f1f1f] shadow-md h-80`}
+    >
       <div
         className={`inline-grid ${
           !isFlipped ? "text-2xl font-semibold justify-center items-center" : ""
