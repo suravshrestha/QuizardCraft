@@ -4,6 +4,7 @@ interface FlashCardProps {
   question: string;
   answer: string;
   isFlipped: boolean;
+  isCrafting: boolean;
   setIsFlipped: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -11,6 +12,7 @@ const FlashCard: React.FC<FlashCardProps> = ({
   question,
   answer,
   isFlipped,
+  isCrafting,
   setIsFlipped,
 }) => {
   const formatAnswer = (text: string) => {
@@ -36,15 +38,21 @@ const FlashCard: React.FC<FlashCardProps> = ({
           isFlipped && answer.length >= 500 ? "text-lg text-left" : ""
         } h-full px-8 my-4 overflow-auto text-white`}
       >
-        {isFlipped ? formatAnswer(answer) : question}
+        {isCrafting
+          ? "CRAFTING..."
+          : isFlipped
+            ? formatAnswer(answer)
+            : question}
       </div>
 
-      <button
-        onClick={() => setIsFlipped(!isFlipped)}
-        className="text-sm font-semibold text-gray-400 hover:text-gray-200 mb-3 align-bottom"
-      >
-        FLIP
-      </button>
+      {!isCrafting && (
+        <button
+          onClick={() => setIsFlipped(!isFlipped)}
+          className="text-sm font-semibold text-gray-400 hover:text-gray-200 mb-3 align-bottom"
+        >
+          FLIP
+        </button>
+      )}
     </div>
   );
 };

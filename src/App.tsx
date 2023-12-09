@@ -99,6 +99,7 @@ function App() {
                 answer={cards[currentCardIndex].answer}
                 isFlipped={isFlipped}
                 setIsFlipped={setIsFlipped}
+                isCrafting={isCrafting}
               />
 
               <div className="flex items-center justify-center text-white gap-4 my-2">
