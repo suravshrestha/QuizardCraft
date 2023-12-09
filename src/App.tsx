@@ -88,7 +88,7 @@ function App() {
       </div>
       <div
         className={`grid ${
-          cardDecksFromLocalStorage && "grid-cols-3"
+          cardDecksFromLocalStorage.length ? "grid-cols-3" : ""
         } gap-4 mx-64`}
       >
         <div className="col-span-2">
