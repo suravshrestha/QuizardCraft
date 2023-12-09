@@ -66,9 +66,9 @@ function App() {
 
   const handleNumCardsInput = (e: React.FormEvent<HTMLInputElement>) => {
     const value = parseInt(e.currentTarget.value);
-    if (value > 50) {
-      e.currentTarget.value = "50";
-      setNumCards(50);
+    if (value > 45) {
+      e.currentTarget.value = "45";
+      setNumCards(45);
     } else if (value < 1) {
       e.currentTarget.value = "1";
       setNumCards(1);
@@ -172,7 +172,7 @@ function App() {
                   type="number"
                   value={numCards}
                   min={1}
-                  max={50}
+                  max={45}
                   onChange={handleNumCardsInput}
                   id="numCards"
                   name="numCards"
