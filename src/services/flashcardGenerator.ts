@@ -6,7 +6,7 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-async function generateFlashcards(topic: string, numCards: number = 10) {
+async function generateFlashcards(topic: string, numCards: number = 5) {
   try {
     const prompt = `Create ${numCards} simple flashcards for a ${topic} quiz, in the following format: [{question: '', answer: ''}]. Feel free to elaborate on each answer to cover important details. Do not return any non-json text or numbering.`;
 

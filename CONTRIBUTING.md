@@ -36,6 +36,7 @@ git commit -m "Your commit message here"
 ```
 
 5. Push your changes to your fork:
+
 ```
 git push origin feature-or-fix-branch
 ```
@@ -43,15 +44,18 @@ git push origin feature-or-fix-branch
 Open a pull request on the QuizardCraft repository.
 
 ## Code Guidelines
+
 - Follow the existing coding style and conventions.
 - Write clear and concise commit messages.
 - Test your changes thoroughly before submitting a pull request.
 - Keep discussions and comments constructive and respectful.
 
 ## Code of Conduct
+
 Please note that this project adheres to the Contributor Covenant Code of Conduct. By participating, you are expected to uphold this code. Please report any unacceptable behavior to project maintainers.
 
 ## License
+
 By contributing to QuizardCraft, you agree that your contributions will be licensed under the [MIT License](./LICENSE).
 
 Thank you for contributing to QuizardCraft! 🚀

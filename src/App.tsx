@@ -10,7 +10,7 @@ import Spinner from "./components/Spinner.tsx";
 
 function App() {
   const [topic, setTopic] = useState<string>("");
-  const [numCards, setNumCards] = useState<number>(10);
+  const [numCards, setNumCards] = useState<number>(5);
   const [cards, setCards] = useState<ICard[]>([]);
   const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
