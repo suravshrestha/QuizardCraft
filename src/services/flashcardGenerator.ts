@@ -8,12 +8,12 @@ const openai = new OpenAI({
 
 async function generateFlashcards(topic: string, numCards: number = 5) {
   try {
-    const prompt = `Create ${numCards} simple flashcards for a ${topic} quiz, in the following format: [{question: '', answer: ''}]. Feel free to elaborate on each answer to cover important details. Do not return any non-json text or numbering.`;
+    const prompt = `Create ${numCards} simple flashcards for a ${topic} quiz, in the following format: [{question: '', answer: ''}]. Do not return any non-json text or numbering.`;
 
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.5,
+      temperature: 0.25,
       max_tokens: 1500,
     });
 
