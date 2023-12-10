@@ -42,7 +42,14 @@ cd quizardcraft
 npm install
 ```
 
-4. Create a `.env` file inside the root directory and set the following credentials:
+4. Create a `.env` file inside the root directory
+
+```
+touch .env
+```
+
+5. Set the following credentials inside the `.env` file
+
 ```
 #.env
 VITE_OPENAI_API_KEY=
