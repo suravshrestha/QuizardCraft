@@ -195,7 +195,7 @@ function App() {
 
             <button
               type="submit"
-              disabled={isCrafting}
+              disabled={isCrafting || !topic.length}
               className="bg-green-600 hover:bg-green-700 font-bold py-2 px-4 rounded text-white tracking-wide"
             >
               {isCrafting ? (
