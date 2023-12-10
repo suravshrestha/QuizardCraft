@@ -32,8 +32,8 @@ const FlashCard: React.FC<FlashCardProps> = ({
 
   return (
     <div
-      className={`flex flex-col mb-${
-        isCrafting ? 6 : 3
+      className={`flex flex-col ${
+        isCrafting ? "mb-6" : "mb-3"
       } rounded-lg border border-gray-500 bg-[#1f1f1f] shadow-md h-80`}
     >
       <div
@@ -44,7 +44,7 @@ const FlashCard: React.FC<FlashCardProps> = ({
         } h-full px-8 my-4 overflow-auto text-white`}
       >
         {isCrafting ? (
-          <Spinner size={2.5} />
+          <Spinner size={10} />
         ) : isFlipped ? (
           formatAnswer(answer)
         ) : (

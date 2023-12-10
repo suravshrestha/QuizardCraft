@@ -93,7 +93,7 @@ function App() {
         } gap-4 mx-64`}
       >
         <div className="col-span-2">
-          {cards.length !== 0 && (
+          {cards.length !== 0 && cardDecksFromLocalStorage.length !== 0 && (
             <>
               <FlashCard
                 question={cards[currentCardIndex].question}
