@@ -51,6 +51,10 @@ const HistoryCard: React.FC<HistoryCardProps> = ({
       <button
         className="ml-2"
         onClick={() => {
+          if (index === currentCardDeckIndex) {
+            setCards([]);
+          }
+
           const newCardDecks = cardDecksFromLocalStorage.filter(
             (_, i) => i !== index,
           );
