@@ -45,7 +45,7 @@ const HistoryCard: React.FC<HistoryCardProps> = ({
             (_, i) => i !== index,
           );
           setCardDecksFromLocalStorage(newCardDecks);
-          localStorage.setItem("flashcards", JSON.stringify(newCardDecks));
+          localStorage.setItem("cardDecks", JSON.stringify(newCardDecks));
         }}
       >
         <MdDeleteForever className="text-red-500" size={23} />

@@ -20,9 +20,9 @@ function App() {
   >([]);
 
   useEffect(() => {
-    const flashcards = localStorage.getItem("flashcards");
-    if (flashcards && flashcards.length) {
-      setCardDecksFromLocalStorage(JSON.parse(flashcards));
+    const cardDecks = localStorage.getItem("cardDecks");
+    if (cardDecks && cardDecks.length) {
+      setCardDecksFromLocalStorage(JSON.parse(cardDecks));
     }
   }, []);
 
@@ -44,20 +44,20 @@ function App() {
       setIsCrafting(false);
       setCards(flashcards);
 
-      const cardDecks = localStorage.getItem("flashcards");
+      const cardDecks = localStorage.getItem("cardDecks");
       if (cardDecks && cardDecks.length) {
         const parsedCardDecks: ICardDeck[] = JSON.parse(cardDecks);
         parsedCardDecks.push({ topic, cards: flashcards });
-        localStorage.setItem("flashcards", JSON.stringify(parsedCardDecks));
+        localStorage.setItem("cardDecks", JSON.stringify(parsedCardDecks));
       } else {
         localStorage.setItem(
-          "flashcards",
+          "cardDecks",
           JSON.stringify([{ topic, cards: flashcards }]),
         );
       }
 
       setCardDecksFromLocalStorage(
-        JSON.parse(localStorage.getItem("flashcards")!),
+        JSON.parse(localStorage.getItem("cardDecks")!),
       );
     } catch (err) {
       console.log(err);
