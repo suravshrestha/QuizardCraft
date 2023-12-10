@@ -13,6 +13,7 @@ function App() {
   const [numCards, setNumCards] = useState<number>(5);
   const [cards, setCards] = useState<ICard[]>([]);
   const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
+  const [currentCardDeckIndex, setCurrentCardDeckIndex] = useState<number>(-1);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [isCrafting, setIsCrafting] = useState<boolean>(false);
   const [cardDecksFromLocalStorage, setCardDecksFromLocalStorage] = useState<
@@ -214,6 +215,8 @@ function App() {
                   reset={reset}
                   cardDecksFromLocalStorage={cardDecksFromLocalStorage}
                   setCardDecksFromLocalStorage={setCardDecksFromLocalStorage}
+                  currentCardDeckIndex={currentCardDeckIndex}
+                  setCurrentCardDeckIndex={setCurrentCardDeckIndex}
                 />
               ))}
             </div>

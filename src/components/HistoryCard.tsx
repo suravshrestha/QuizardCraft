@@ -8,11 +8,13 @@ interface HistoryCardProps {
   numCards: number;
   cards: ICard[];
   cardDecksFromLocalStorage: ICardDeck[];
+  currentCardDeckIndex: number;
   setCards: React.Dispatch<React.SetStateAction<ICard[]>>;
   reset: () => void;
   setCardDecksFromLocalStorage: React.Dispatch<
     React.SetStateAction<ICardDeck[]>
   >;
+  setCurrentCardDeckIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const HistoryCard: React.FC<HistoryCardProps> = ({
@@ -20,16 +22,22 @@ const HistoryCard: React.FC<HistoryCardProps> = ({
   topic,
   numCards,
   cards,
+  cardDecksFromLocalStorage,
+  currentCardDeckIndex,
   setCards,
   reset,
-  cardDecksFromLocalStorage,
   setCardDecksFromLocalStorage,
+  setCurrentCardDeckIndex,
 }) => {
   return (
     <div className="flex items-center justify-between">
       <button
-        className="flex items-center justify-between border border-gray-500 bg-[#1a202c] rounded-lg p-3 w-full"
+        disabled={index === currentCardDeckIndex}
+        className={`flex items-center justify-between border border-gray-500 bg-[#1a202c] ${
+          index === currentCardDeckIndex ? "text-white" : "text-gray-400"
+        } rounded-lg p-3 w-full`}
         onClick={() => {
+          setCurrentCardDeckIndex(index);
           setCards(cards);
           reset();
         }}
