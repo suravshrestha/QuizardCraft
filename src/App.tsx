@@ -91,9 +91,9 @@ function App() {
       <div
         className={`grid ${
           cardDecksFromLocalStorage.length ? "grid-cols-3" : ""
-        } gap-4 mx-64`}
+        } gap-4 mx-16 sm:mx-28 md:mx-48 xl:mx-64`}
       >
-        <div className="col-span-2">
+        <div className="col-span-3 lg:col-span-2">
           {cards.length !== 0 && cardDecksFromLocalStorage.length !== 0 && (
             <>
               <FlashCard
@@ -148,9 +148,12 @@ function App() {
             }`}
             onSubmit={handleSubmit}
           >
-            <div className="flex flex-row justify-center gap-8">
-              <div className="flex flex-col">
-                <label htmlFor="topic" className="text-white font-semibold">
+            <div className="flex flex-col xl:flex-row justify-center xl:gap-8 mt-4 xl:mt-0">
+              <div className="flex flex-row xl:flex-col justify-end">
+                <label
+                  htmlFor="topic"
+                  className="text-white font-semibold my-auto xl:my-0 mr-2 xl:mr-0"
+                >
                   Topic
                 </label>
                 <input
@@ -165,8 +168,11 @@ function App() {
                 />
               </div>
 
-              <div className="flex flex-col">
-                <label htmlFor="numCards" className="text-white font-semibold">
+              <div className="flex flex-row xl:flex-col justify-end">
+                <label
+                  htmlFor="numCards"
+                  className="text-white font-semibold my-auto xl:my-0 mr-2 xl:mr-0"
+                >
                   #Cards
                 </label>
                 <input
@@ -200,7 +206,7 @@ function App() {
         </div>
 
         {cardDecksFromLocalStorage.length !== 0 && (
-          <div className="border border-gray-500 p-4 pr-0 rounded-lg bg-[#1f1f1f] text-white">
+          <div className="col-span-3 lg:col-span-1 border border-gray-500 p-4 pr-0 my-4 lg:my-0 rounded-lg bg-[#1f1f1f] text-white">
             <div className="text-xl font-bold mb-4">History</div>
 
             <div className="flex flex-col gap-y-4 pr-4 mt-2 overflow-auto h-96">
