@@ -80,7 +80,7 @@ function App() {
   return (
     <div
       className={`text-center flex flex-col ${
-        cards.length && "justify-center"
+        cards.length && cardDecksFromLocalStorage.length && "justify-center"
       }  min-h-screen bg-[#1a202c]`}
     >
       <div className="text-3xl font-bold p-4">
@@ -205,12 +205,15 @@ function App() {
             <div className="flex flex-col gap-y-4 pr-4 mt-2 overflow-auto h-96">
               {cardDecksFromLocalStorage.map((cardDeck, index) => (
                 <HistoryCard
+                  index={index}
                   key={index}
                   topic={cardDeck.topic}
                   numCards={cardDeck.cards.length}
                   cards={cardDeck.cards}
                   setCards={setCards}
                   reset={reset}
+                  cardDecksFromLocalStorage={cardDecksFromLocalStorage}
+                  setCardDecksFromLocalStorage={setCardDecksFromLocalStorage}
                 />
               ))}
             </div>

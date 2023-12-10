@@ -44,7 +44,7 @@ const FlashCard: React.FC<FlashCardProps> = ({
         } h-full px-8 my-4 overflow-auto text-white`}
       >
         {isCrafting ? (
-          <Spinner size={10} />
+          <Spinner size={2.5} />
         ) : isFlipped ? (
           formatAnswer(answer)
         ) : (
