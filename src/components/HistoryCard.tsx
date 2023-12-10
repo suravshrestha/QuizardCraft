@@ -6,6 +6,7 @@ interface HistoryCardProps {
   index: number;
   topic: string;
   numCards: number;
+  isCrafting: boolean;
   cards: ICard[];
   cardDecksFromLocalStorage: ICardDeck[];
   currentCardDeckIndex: number;
@@ -21,6 +22,7 @@ const HistoryCard: React.FC<HistoryCardProps> = ({
   index,
   topic,
   numCards,
+  isCrafting,
   cards,
   cardDecksFromLocalStorage,
   currentCardDeckIndex,
@@ -32,7 +34,7 @@ const HistoryCard: React.FC<HistoryCardProps> = ({
   return (
     <div className="flex items-center justify-between">
       <button
-        disabled={index === currentCardDeckIndex}
+        disabled={index === currentCardDeckIndex || isCrafting}
         className={`flex items-center justify-between border border-gray-500 bg-[#1a202c] ${
           index === currentCardDeckIndex ? "text-white" : "text-gray-400"
         } rounded-lg p-3 w-full`}

@@ -40,6 +40,7 @@ function App() {
 
     try {
       setIsCrafting(true);
+      setCurrentCardDeckIndex(-1);
       const flashcards = await generateFlashcards(topic, numCards);
 
       setIsCrafting(false);
@@ -50,6 +51,7 @@ function App() {
         const parsedCardDecks: ICardDeck[] = JSON.parse(cardDecks);
         parsedCardDecks.push({ topic, cards: flashcards });
         localStorage.setItem("cardDecks", JSON.stringify(parsedCardDecks));
+        setCurrentCardDeckIndex(parsedCardDecks.length - 1);
       } else {
         localStorage.setItem(
           "cardDecks",
@@ -217,6 +219,7 @@ function App() {
                   topic={cardDeck.topic}
                   numCards={cardDeck.cards.length}
                   cards={cardDeck.cards}
+                  isCrafting={isCrafting}
                   setCards={setCards}
                   reset={reset}
                   cardDecksFromLocalStorage={cardDecksFromLocalStorage}
