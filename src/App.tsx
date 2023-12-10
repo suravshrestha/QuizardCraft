@@ -83,7 +83,9 @@ function App() {
   return (
     <div
       className={`text-center flex flex-col ${
-        cards.length && cardDecksFromLocalStorage.length && "justify-center"
+        cards.length && cardDecksFromLocalStorage.length
+          ? "justify-center"
+          : "pt-28"
       }  min-h-screen bg-[#1a202c]`}
     >
       <div className="text-3xl font-bold p-4">
