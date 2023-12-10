@@ -2,10 +2,16 @@ interface SpinnerProps {
   size?: number;
 }
 
-const Spinner: React.FC<SpinnerProps> = ({ size = 5 }) => {
+const Spinner: React.FC<SpinnerProps> = ({ size = 1.25 }) => {
+  const style = {
+    height: `${size}rem`,
+    width: `${size}rem`,
+  };
+
   return (
     <svg
-      className={`animate-spin h-${size} w-${size} text-white`}
+      style={style}
+      className="animate-spin text-white"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
