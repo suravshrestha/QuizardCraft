@@ -1,6 +1,7 @@
 # QuizardCraft
+
 <div align="center"> 
-  <img src="./public/logo.png" width=250 height=250 />
+  <img src="https://github.com/suravshrestha/QuizardCraft/assets/24486999/9d6b0017-107a-451c-975c-e72c0bdf6698" width=250 height=250 />
 </div>
 
 ## Overview
